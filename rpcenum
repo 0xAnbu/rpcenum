@@ -27,11 +27,11 @@ function helpPanel(){
 
 	echo -e "\n${yellowColour}[*]${endColour}${grayColour} Uso: rpcenum${endColour}"
 	echo -e "\n\t${purpleColour}e)${endColour}${yellowColour} Enumeration Mode${endColour}"
-	echo -e "\n\t\t${grayColour}DUsers${endColour}${redColour} (Domain Users)${endColour}"
-	echo -e "\t\t${grayColour}DUsersInfo${endColour}${redColour} (Domain Users with info)${endColour}"
-	echo -e "\t\t${grayColour}DAUsers ${redColour}(Domain Admin Users)${endColour}"
-	echo -e "\t\t${grayColour}DGroups ${redColour}(Domain Groups)${endColour}"
-	echo -e "\t\t${grayColour}All ${redColour}(All Modes)${endColour}"
+	echo -e "\n\t\t${grayColour}users${endColour}${redColour} (Domain Users)${endColour}"
+	echo -e "\t\t${grayColour}info${endColour}${redColour} (Domain Users with info)${endColour}"
+	echo -e "\t\t${grayColour}admins ${redColour}(Domain Admin Users)${endColour}"
+	echo -e "\t\t${grayColour}groups ${redColour}(Domain Groups)${endColour}"
+	echo -e "\t\t${grayColour}all ${redColour}(All Modes)${endColour}"
 	echo -e "\n\t${purpleColour}i)${endColour}${yellowColour} Host IP Address${endColour}"
 	echo -e "\n\t${purpleColour}u)${endColour}${yellowColour} Username%Password (optional)${endColour}"
 	echo -e "\n\t${purpleColour}h)${endColour}${yellowColour} Show this help pannel${endColour}"
@@ -212,19 +212,19 @@ function beginEnumeration(){
 	if [ "$(echo $?)" == "0" ]; then
 		if [ "$port_status" == "0" ]; then
 			case $enum_mode in
-				DUsers)
+				users)
 					extract_DUsers $host_ip
 					;;
-				DUsersInfo)
+				info)
 					extract_DUsers_Info $host_ip
 					;;
-				DAUsers)
+				admins)
 					extract_DAUsers $host_ip
 					;;
-				DGroups)
+				groups)
 					extract_DGroups $host_ip
 					;;
-				All)
+				all)
 					extract_All $host_ip
 					;;
 				*)
