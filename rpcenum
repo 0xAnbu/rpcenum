@@ -245,23 +245,19 @@ function beginEnumeration(){
 
 # Main Function
 
-if [ "$(echo $UID)" == "0" ]; then
-	declare -i parameter_counter=0
-	while getopts ":e:i:u:h:" arg; do
-		case $arg in
-			e) enum_mode=$OPTARG; let parameter_counter+=1 ;;
-			i) host_ip=$OPTARG; let parameter_counter+=1 ;;
-			u) RPC_AUTH="-U $OPTARG";;
-			h) helpPanel ;;
-		esac
-	done
+declare -i parameter_counter=0
+while getopts ":e:i:u:h:" arg; do
+	case $arg in
+		e) enum_mode=$OPTARG; let parameter_counter+=1 ;;
+		i) host_ip=$OPTARG; let parameter_counter+=1 ;;
+		u) RPC_AUTH="-U $OPTARG";;
+		h) helpPanel ;;
+	esac
+done
 
-	if [ $parameter_counter -ne 2 ]; then
-		helpPanel
-	else
-		beginEnumeration
-		tput cnorm
-	fi
+if [ $parameter_counter -ne 2 ]; then
+	helpPanel
 else
-	echo -e "\n${redColour}[*] It is necessary to run the program as root${endColour}\n"
+	beginEnumeration
+	tput cnorm
 fi
